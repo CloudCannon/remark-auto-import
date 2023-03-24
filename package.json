@@ -1,12 +1,9 @@
 {
   "name": "@cloudcannon/remark-auto-import",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "type": "module",
   "description": "Remark plugin for automatically importing components",
   "main": "main.js",
-  "scripts": {
-    "test": "nyc ava -v"
-  },
   "files": [
     "**/*.js",
     "!**/*.test.js"
