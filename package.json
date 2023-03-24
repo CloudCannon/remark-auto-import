@@ -1,6 +1,6 @@
 {
   "name": "@cloudcannon/remark-auto-import",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
   "description": "Remark plugin for automatically importing components",
   "main": "main.js",
