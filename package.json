@@ -4,6 +4,9 @@
   "type": "module",
   "description": "Remark plugin for automatically importing components",
   "main": "main.js",
+  "scripts": {
+    "test": ""
+  },
   "files": [
     "**/*.js",
     "!**/*.test.js"
