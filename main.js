@@ -5,7 +5,7 @@ import { defaultImportSpecifier, importStatement, namedImportSpecifier } from ".
 export default (options) => {
   return (tree, file) => {
     if (!options || !options.patterns || !options.directories) {
-      console.warn('remark-auto-import: Invalid configuration skipping')
+      console.warn('[remark-auto-import] Invalid configuration skipping')
       return tree;
     }
 
@@ -28,7 +28,7 @@ export default (options) => {
           try{
             name = options.name(path);
           } catch (err){
-            console.warn(path+': Error getting name, skipping file: '+ err)
+            console.warn(`[remark-auto-import] ${path}: Error getting name, skipping file: ${err}`)
             return;
           }
         }
@@ -39,11 +39,11 @@ export default (options) => {
         }
 
         if (seen[name]){
-          console.warn(path+': Component already imported with name "'+name+'", skipping file')
+          console.warn(`[remark-auto-import] ${file.history[0]}: Skipping import of ${path}: "${seen[name]}" already imported with name ${name}`)
           return;
         }
 
-        seen[name] = true;
+        seen[name] = path;
 
         tree.children.unshift(importStatement(path, [defaultImportSpecifier(name)]));
       });
