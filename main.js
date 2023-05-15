@@ -3,9 +3,13 @@ import { join } from "path";
 import { defaultImportSpecifier, importStatement, namedImportSpecifier } from "./helpers/tree-helper.js";
 
 export default (options) => {
-  return (tree) => {
+  return (tree, file) => {
     if (!options || !options.patterns || !options.directories) {
-      console.warn('remark-auto-import: Invalid configurationm skipping')
+      console.warn('remark-auto-import: Invalid configuration skipping')
+      return tree;
+    }
+
+    if(!file.history.find((name) => name.endsWith('.mdx'))){
       return tree;
     }
 
