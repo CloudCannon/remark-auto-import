@@ -10,7 +10,14 @@ export default (options) => {
     }
 
     if(!file.history.find((name) => name.endsWith('.mdx'))){
+      if(options.debug && file.history.length > 0){
+        console.log(`[remark-auto-import] Skipping ${file.history[0]}: File is not MDX`)
+      }
       return tree;
+    }
+
+    if(options.debug && file.history.length > 0){
+      console.log(`[remark-auto-import] Processing ${file.history[0]}...`)
     }
 
     const seen = {};
@@ -44,6 +51,10 @@ export default (options) => {
         }
 
         seen[name] = path;
+
+        if(options.debug){
+          console.log(`[remark-auto-import] ${file.history[0]}: Added import of ${path}: "${name}"`)
+        }
 
         tree.children.unshift(importStatement(path, [defaultImportSpecifier(name)]));
       });
